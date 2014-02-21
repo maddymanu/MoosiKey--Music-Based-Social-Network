@@ -1,0 +1,4 @@
+<% m = Micropost.tagged_with("amazing") %>
+<% @m.each do |p| %>
+  <%= p.content %>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_for([@genre, @micropost]) do |f| %>
+  <div class="field">
+    <%= f.text_area :content , :cols => 10, :rows => 3 %>
+  </div>
+  <button class="btn" type="submit">
+    Create
+  </button>
+<% end %>

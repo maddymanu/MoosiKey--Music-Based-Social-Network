@@ -1,0 +1,9 @@
+<%= form_for([micropost, @comment]) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :comment_content , :cols => 10, :rows => 3 %>
+  </div>
+  <button class="btn" type="submit">
+    Create
+  </button>
+<% end %>

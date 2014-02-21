@@ -1,0 +1,5 @@
+<% m = Micropost.tagged_with("happy") %>
+<% @m.each do |p| %>
+  <%= link_to p.content, p %>
+  <br>
+<% end %>

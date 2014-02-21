@@ -1,0 +1,48 @@
+  <center>
+    <div class="question">
+    <h3><%= @micropost.content %></h3>
+    </div>
+  <br>
+
+  <% @micropost.comments.each do |comment| %>
+  <ol class="answers">
+    <li>
+      <b><%= comment.comment_content %> </b>
+
+   <% if current_user?(comment.user) %>
+    <%= link_to "delete", comment, method: :delete, confirm: "You Sure?", title: comment.comment_content %>
+  <% end %>
+
+      <% @search = YoutubeSearch.search(comment.comment_content) %>
+      <% if @search.any? %>
+      <%= link_to link_to image_tag("yt.png" , :size => "50x40",  alt: "Youtube") , "http://www.youtube.com/watch?v=#{@search.first['video_id']}" , :target => "_blank" %>
+      <% end %>
+ 
+
+      <% @searchnew2 = MetaSpotify::Track.search(comment.comment_content)  %>
+      <% if @searchnew2[:tracks].any? %>
+      <% track = @searchnew2[:tracks].first.uri %>
+      <%= link_to image_tag("sf.jpg" , :size => "50x40",  alt: "Spotify") , track  %>
+      <% end %>
+    </li>
+  </ol>
+    <% end %>
+
+
+
+    <div class="commentbox">
+    <h3>Add a comment:</h3>
+    <%= form_for([@micropost, @micropost.comments.build]) do |f| %>
+
+    <div class="field">
+      <%= f.text_area :comment_content , :cols => 10, :rows => 3 %>
+    </div>
+    <div class="actions">
+     <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    </div>
+    </div>
+
+
+
+    </center>
+  <% end %>
